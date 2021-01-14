@@ -1,0 +1,78 @@
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+struct stack
+{
+int data;
+struct stack *next;
+}
+*top=NULL,*temp;
+main()
+{
+int choice;
+clrscr();
+while(1)
+{
+printf("\n Main menu\n");
+printf("1.Push\n");
+printf("2.Pop\n");
+printf("3.Display\n");
+printf("4.Quit\n");
+scanf("%d",&choice);
+switch(choice)
+{
+case 1:push();
+       break;
+case 2:pop();
+       break;
+case 3:display();
+       break;
+case 4:exit(1);
+       break;
+default:printf("\n Wrong choice");
+}
+}
+}
+push()
+{
+struct stack* temp;
+int pushitem;
+temp=(struct stack*)malloc(sizeof(struct stack));
+printf("\n Input the element to be inserted on to the stack:");
+scanf("%d",&pushitem);
+temp->data=pushitem;
+temp->next=top;
+top=temp;
+return;
+}
+pop()
+{
+struct stack *ptr;
+if(top==NULL)
+printf("Stack is empty");
+else
+{
+temp=top;
+printf("Popped item is %d\n:",temp->data);
+top=top->next;
+free(temp);
+}
+return;
+}
+display()
+{
+struct stack *ptr;
+ptr=top;
+if(top==NULL)
+printf("\n Stack is empty");
+else
+{
+printf("\n Stack elements:");
+while(ptr!=NULL)
+{
+printf("%d\n",ptr->data);
+ptr=ptr->next;
+}
+}
+return;
+}
